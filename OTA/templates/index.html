@@ -1,0 +1,10 @@
+{% extends 'partials/base.html' %}
+{% block title %}Home {% endblock title %}
+{% block body %}
+<div class="container px-4 px-md-3">
+    <h1 class='mb-3'>Your Ovens </h1>
+    {% for i in ovens %}
+    <a href="{{ i }}"><button type="button" class="btn btn-primary"><h2>{{ i }}</h2></button></a>
+    {% endfor %}
+</div>
+{% endblock body %}

@@ -1,0 +1,50 @@
+{% extends 'partials/base.html' %}
+{% block title %}Oven {{ oven_id }} {% endblock title %}
+{% block script %}
+<script>
+var xValues = {{x|safe}};
+var yValues = {{y}};
+
+new Chart(document.getElementById("myChart"), {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      label: 'Temperatures',
+      borderColor: "rgba(0,0,0,1)",
+      data: yValues,
+      fill: false
+    }]
+  },
+  options:{}
+});
+</script>
+{% endblock script %}
+{% block body %}
+<div class="container-fluid">
+    <h1>Temperatures of oven {{ oven_id }}</h1>
+</div>
+<div>
+    <canvas class=""  width="500" height="200" id="myChart"></canvas>
+    
+</div>
+<table class='table table-hover table-responsive'>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Cyclic Hours</th>
+        <th scope="col">Temperature</th>
+    </tr>
+    {% for i in temp %}
+    <tr>
+        <th scope="row">{{ i.id }}</th>
+        <td>{{ i.date }}</td>
+        <td>{{ i.time }}</td>
+        <td>{{ i.cyclic_hours }}</td>
+        <td>{{ i.temperature }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock body %}
